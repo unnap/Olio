@@ -2,6 +2,24 @@ package Assignment1dot3;
 
 import java.util.Scanner;
 
+
+class Util{
+    static boolean checkInt(Scanner scanner){
+        //boolean isInt;
+        if(scanner.hasNextInt()){
+            //System.out.println(";)");
+            //scanner.nextLine();
+            //scanner.nextLine();
+            return true;
+        } else {
+            System.out.println("Not an integer");
+            scanner.nextLine();
+            scanner.nextLine();
+            return false;
+        }
+        //return isInt;
+    }
+}
 /*
 Ei reaalisia juuria (D<0)
 Esimerkki:
@@ -27,7 +45,7 @@ class Task1{
     static void run(Scanner scanner, String separator){
         //enter the coefficients of a quadratic equation
         // (ax^2 + bx + c = 0)
-        System.out.println("ax^2 + bx + c = 0"+separator+"Enter value for a");
+        System.out.println("ax^2 + bx + c = 0\n"+separator+"\nEnter value for a");
         double a = scanner.nextDouble();
         System.out.println("Enter value for b");
         double b = scanner.nextDouble();
@@ -42,33 +60,35 @@ class Task1{
         //D<0 ei juuri
         if(discriminate<0){
             //EI JUURI
-            System.out.printf(separator+"No real roots");
+            System.out.println(separator+"\nNo real roots");
         } else if(discriminate==0) {
             //YKSI JUURI
             //System.out.printf("yksi juuri");
             double x = -b/(2*a);
-            System.out.printf(separator+"x = %.2f",x);
+            System.out.printf(separator+"\nx = %.2f",x);
         } else {
             //KAKSI JUURI
             double x1 = (-b+Math.sqrt(discriminate))/(2*a);
             double x2 = (-b-Math.sqrt(discriminate))/(2*a);
-            System.out.printf(separator+"x = %.2f\ntai\nx = %.2f",x1,x2);
+            System.out.printf(separator+"\nx = %.2f\ntai\nx = %.2f",x1,x2);
         }
     }
 }
 
 class Task2{
-    static void run(){
-        String bin = "1101";
+    static void run(Scanner scanner, String separator){
+        System.out.println("Enter binary:");
+        scanner.nextLine();
+        String binary = scanner.nextLine();
         int n = 0;
         int dec = 0;
-        for(int i=bin.length()-1; i>=0; i--){
+        for(int i=binary.length()-1; i>=0; i--){
             //System.out.println(i);
-            int oneZero = Character.getNumericValue(bin.charAt(i));
+            int oneZero = Character.getNumericValue(binary.charAt(i));
             dec+=oneZero*Math.pow(2,n);
             n++;
         }
-        System.out.println(dec);
+        System.out.printf(separator+"\nBinary %s is %d in decimal numbers", binary, dec);
         //String testi = "1234";
         //int t = Character.getNumericValue(testi.charAt(3));
         //System.out.println(t);
@@ -76,9 +96,83 @@ class Task2{
     }
 }
 
+
+/*
+
+function isPrime(n) {
+    if (n <= 1) {
+        return false;
+    }
+
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+*/
+
+
+
+
 class Task3{
-    static void run(){
-        System.out.println("placeholder 3");
+    static boolean isPrime(int num){
+        boolean prime = true;
+        if (num==1){
+            prime = false;
+        } else {
+            for (int i=2;i<=Math.sqrt(num);i++){
+                if(num%i==0){
+                    prime = false;
+                }
+            }
+        }
+        return prime;
+    }
+
+    static void run(Scanner scanner, String separator){
+        int loops = 0;
+        int num1=0, num2=0;
+        while (loops<2){
+            if (loops==0){
+                System.out.println("Give the first integer");
+                if(Util.checkInt(scanner)){
+                    num1 = scanner.nextInt();
+                    if(num1>0){
+                        loops++;
+                    } else {
+                        System.out.println(separator+"\nThe integer needs to be a positive number\n"+separator);
+                    }
+                }
+            } else {
+                System.out.println("Give second integer that is bigger than the first");
+                if(Util.checkInt(scanner)){
+                    num2 = scanner.nextInt();
+                    if(num1<num2){
+                        loops++;
+                    } else {
+                        System.out.println(separator+"\nThe integer needs to be bigger than the first one\n"+separator);
+                    }
+                }
+            }
+        }
+        //System.out.println("END");
+        System.out.printf(separator+"\nThe prime numbers between %d and %d:\n",num1,num2);
+        boolean found = false;
+        for(int n = num1; n<=num2; n++){
+            if(isPrime(n)){
+                System.out.println(n);
+                if(!found){
+                    found=true;
+                }
+            }
+        }
+        if(!found){
+            System.out.println("No primes");
+        }
     }
 }
 
@@ -91,13 +185,9 @@ class Task4{
 public class Tasks {
     public static void main(String[] args) {
         String separator1 = "==============";
-        String separator2 = "\n-----\n";
-        String cont = "Press Enter to continue";
+        String separator2 = "-----";
+        String cont = "\nPress Enter to continue";
         Scanner scanner = new Scanner(System.in);
-        Task1 task1 = new Task1();
-        Task2 task2 = new Task2();
-        Task3 task3 = new Task3();
-        Task4 task4 = new Task4();
         boolean juokse = true;
 
         while(juokse) {
@@ -107,31 +197,31 @@ public class Tasks {
                 int choice = scanner.nextInt();
                 switch(choice) {
                     case 1:
-                        task1.run(scanner, separator2);
+                        Task1.run(scanner, separator2);
                         break;
                     case 2:
-                        task2.run();
+                        Task2.run(scanner, separator2);
                         break;
                     case 3:
-                        task3.run();
+                        Task3.run(scanner, separator2);
                         break;
                     case 4:
-                        task4.run();
+                        Task4.run();
                         break;
                     case 5:
-                        System.out.printf("Thanks bye");
+                        System.out.println("Thanks bye");
                         juokse = false;
                         break;
                     default:
-                        System.out.printf("No such task");
+                        System.out.println("No such task");
                 }
                 scanner.nextLine();
-                System.out.printf(separator2+cont);
+                System.out.println(separator2+cont);
                 scanner.nextLine();
             } else {
-                System.out.printf("You need to input a valid integer");
+                System.out.println("You need to input a valid integer");
                 scanner.nextLine();
-                System.out.printf(separator2+cont);
+                System.out.println(separator2+cont);
                 scanner.nextLine();
             }
         }

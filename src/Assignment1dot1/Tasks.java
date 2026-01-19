@@ -72,10 +72,6 @@ public class Tasks {
         String separator2 = "-----\n";
         String cont = "Press Enter to continue";
         Scanner scanner = new Scanner(System.in);
-        Task1 task1 = new Task1();
-        Task2 task2 = new Task2();
-        Task3 task3 = new Task3();
-        Task4 task4 = new Task4();
         boolean juokse = true;
 
         while(juokse) {
@@ -85,16 +81,16 @@ public class Tasks {
                 int choice = scanner.nextInt();
                 switch(choice) {
                     case 1:
-                        task1.run();
+                        Task1.run();
                         break;
                     case 2:
-                        task2.run();
+                        Task2.run();
                         break;
                     case 3:
-                        task3.run(scanner);
+                        Task3.run(scanner);
                         break;
                     case 4:
-                        task4.run();
+                        Task4.run();
                         break;
                     case 5:
                         System.out.println("Thanks bye");

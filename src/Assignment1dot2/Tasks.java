@@ -7,7 +7,7 @@ class Task1{
         System.out.println("Enter Fahrenheit");
         double temp = scanner.nextDouble();
         double celsius = (temp-32)/1.8;
-        System.out.printf("%.1f Fahrenheit is %.1f Celsius", temp, celsius);
+        System.out.printf("%.1f Fahrenheit is %.1f Celsius\n", temp, celsius);
     }
 }
 
@@ -18,7 +18,7 @@ class Task2{
         System.out.println("Leg two");
         double leg2 = scanner.nextDouble();
         double hypo = Math.sqrt(Math.pow(leg1,2)+Math.pow(leg2,2));
-        System.out.printf("Your hypotenuse is %.2f", hypo);
+        System.out.printf("Your hypotenuse is %.2f\n", hypo);
     }
 }
 
@@ -42,7 +42,7 @@ class Task3{
         }
         luodit = gramma/luotiGrammat;
 
-        System.out.printf("%.2f grammaa on %d leiviskää, %d naulaa ja %.2f luotia",
+        System.out.printf("%.2f grammaa on %d leiviskää, %d naulaa ja %.2f luotia\n",
                 alkupGramma, leiviskat, naulat, luodit);
     }
 }
@@ -50,13 +50,9 @@ class Task3{
 public class Tasks {
     public static void main(String[] args) {
         String separator1 = "==============";
-        String separator2 = "\n-----\n";
-        String cont = "Press Enter to continue";
+        String separator2 = "-----";
+        String cont = "\nPress Enter to continue";
         Scanner scanner = new Scanner(System.in);
-
-        Task1 task1 = new Task1();
-        Task2 task2 = new Task2();
-        Task3 task3 = new Task3();
         boolean juokse = true;
 
         while (juokse) {
@@ -66,13 +62,13 @@ public class Tasks {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        task1.run(scanner);
+                        Task1.run(scanner);
                         break;
                     case 2:
-                        task2.run(scanner);
+                        Task2.run(scanner);
                         break;
                     case 3:
-                        task3.run(scanner);
+                        Task3.run(scanner);
                         break;
                     case 4:
                         System.out.println("Thanks bye");
