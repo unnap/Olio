@@ -7,7 +7,7 @@ public class Book {
     private final String author;
     private final int pubYear;
     private double rating;
-    private ArrayList<String> reviews = new ArrayList<String>();
+    private ArrayList<String> reviews = new ArrayList<>();
 
     public Book(String title, String author, int pubYear){
         this.title = title;
