@@ -6,7 +6,7 @@ public class CoffeeMakerDriver {
     String normal = "normal";
 
     void toggleType(){
-        if(coffeeMaker.getType()==normal){
+        if(coffeeMaker.getType().equals(normal)){
             coffeeMaker.setType(espresso);
         } else {
             coffeeMaker.setType(normal);
