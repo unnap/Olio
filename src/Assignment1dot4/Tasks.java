@@ -1,4 +1,4 @@
-package Assignment1dot4;
+//package Assignment1dot4;
 
 import java.util.Scanner;
 
@@ -79,9 +79,11 @@ class Task2{
 
             for(int b=a;b<arraySize;b++){
                 int sum = 0;
+
                 for(int c=a;c<=b;c++){
                     sum+=numbers[c];
                 }
+
                 if(sum>maxSum){
                     maxSum=sum;
                     startInt=a+1;
